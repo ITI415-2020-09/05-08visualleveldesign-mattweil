@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class CollectController : MonoBehaviour
 {
 
-	// public AudioClip pickupSound;
+	public AudioClip pickupSound;
+	public AudioClip newMusic;
 	public AudioSource audioSource;
 	public Text score;
 	public Text timeText;
@@ -24,6 +25,10 @@ public class CollectController : MonoBehaviour
 		timeText = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
         count = 0;
     }
+
+	void Awake(){
+		Debug.Log("Audio Awake!" + this.gameObject.name);
+	}
 
 
 	     
@@ -57,9 +62,35 @@ public class CollectController : MonoBehaviour
 			
 			// Add one to the score variable 'count'
 			count = count + 1;
-			AudioClip audioClip = Resources.Load("./powerup/powerup_3.wav") as AudioClip;
-			audioSource.PlayOneShot(audioClip);
+			// AudioClip audioClip = Resources.Load("powerup_17") as AudioClip;
+			audioSource.PlayOneShot(pickupSound);
 			score.text = "Orbs Collected: " + count.ToString();
+
+
+			if(count == 12){
+				score.text = "";
+				Text complete = GameObject.FindGameObjectWithTag("Complete").GetComponent<Text>();
+				Text sc = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
+				complete.text = "LEVEL COMPLETE";
+				sc.text = "TIME: " + timeText.text;
+			}
+
+
+
+		}
+
+		if (other.gameObject.CompareTag ("SoundChange"))
+		{
+			// other.gameObject.SetActive (false);
+			
+			// Add one to the score variable 'count'
+			// count = count + 1;
+			print("AUDIO CHANGE");
+			// AudioClip audioClip = Resources.Load("powerup_3") as AudioClip;
+			// audioSource.PlayOneShot(audioClip);
+			audioSource.clip = newMusic;
+			audioSource.Play();
+						// score.text = "Orbs Collected: " + count.ToString();
 
 
 

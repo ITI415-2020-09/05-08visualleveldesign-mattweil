@@ -8,6 +8,9 @@ TagManager:
   - UI
   - Timer
   - AS
+  - SoundChange
+  - Complete
+  - ScoreText
   layers:
   - Default
   - TransparentFX
