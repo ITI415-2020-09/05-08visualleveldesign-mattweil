@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Collectable
+  - UI
+  - Timer
+  - AS
+  - SoundChange
+  - Complete
+  - ScoreText
   layers:
   - Default
   - TransparentFX
